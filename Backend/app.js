@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("tiny"));
 
-
 const env = process.env;
 const port = env.PORT || 3000;
 const hostName = env.HOST || "localhost";
+
+// connect to mongoose
+const db = require("./config/db.js");
 
 app.get("/", (req, res) => {
   res.send("✅ Server is working!");
