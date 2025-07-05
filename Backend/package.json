@@ -1,0 +1,22 @@
+{
+  "name": "fashonbackend",
+  "version": "1.0.0",
+  "description": "a node.js backend for an ecommerce mobile app ",
+  "license": "ISC",
+  "author": "Thyon3",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.1",
+    "express": "^5.1.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.10"
+  }
+}
