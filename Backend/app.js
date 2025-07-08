@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const authRouter = require("./routers/auth.js");
 const errorHandler = require("./middlewares/errorHandler.js");
 
+const UserRouter = require("./controllers/user.js");
+
 require("dotenv/config");
 
 const jwtAuthentication = require("./middlewares/jwt.js");
@@ -29,6 +31,7 @@ const db = require("./config/db.js");
 // all router middlewares
 
 app.use(`/${api_url}`, authRouter);
+app.use("/users", UserRouter);
 
 app.get("/", (req, res) => {
   res.send("✅ Server is working!");
