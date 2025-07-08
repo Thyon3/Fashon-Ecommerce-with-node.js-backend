@@ -184,3 +184,71 @@ exports.forgotPassword = async function (req, res, next) {
     });
   }
 };
+
+// verify otp
+exports.verifyOtp = async function (req, res, next) {
+  try {
+    const { email, otp } = req.body;
+    const user = await UserModel.findOne({ email: email });
+    if (!user) {
+      return res.status(404).json({
+        message: " A user with this email is not found",
+      });
+    }
+    if (user.resetPasswordOtp !== otp) {
+      return res
+        .status(400)
+        .json({ message: "The Otp is incorrect please try again" });
+    }
+    if (user.resetPasswordOtpExpires < Date.now()) {
+      return res
+        .status(400)
+        .json({ message: "The otp is expired please try again" });
+    }
+    user.resetPasswordOtp = 1;
+    user.resetPasswordOtpExpires = undefined;
+
+    await user.save();
+    return res.status(200).json({
+      message: "the otp has been verified successsfully",
+      userId: user._id,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      type: error.name,
+      message: error.message,
+    });
+  }
+};
+
+// reset password
+exports.resetPassword = async function (req, res, next) {
+  try {
+    const { email, newPassword } = req.body;
+    // check the user email if the user exists
+
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        message: "A user with this email does note exist",
+      });
+    }
+    if (user.resetPasswordOtp !== 1) {
+      return res.status(400).json({
+        message: "First you have to verify Otp before reseting your password",
+      });
+    }
+    user.passwordHash = bcrypt.hashSync(newPassword, 8);
+    user.resetPasswordOtp = undefined;
+    await user.save();
+    return res
+      .status(200)
+      .json({ message: "Your password has been changed successfully" });
+  } catch (error) {
+    // if there is an error return the error message
+    return res.status(500).json({
+      type: error.name,
+      message: error.message,
+    });
+  }
+};
