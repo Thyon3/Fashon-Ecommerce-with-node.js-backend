@@ -1,10 +1,12 @@
 //import validation result from express validator
 const bcrypt = require("bcrypt");
+const emailSender = require("../heplers/email_sender");
 const UserModel = require("../models/user");
 const TokenModel = require("../models/token");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
 
+// registering users
 exports.register = async function (req, res, next) {
   const errors = validationResult(req);
 
@@ -47,6 +49,7 @@ exports.register = async function (req, res, next) {
   }
 };
 
+//logging users in
 exports.login = async function (req, res, next) {
   try {
     // extract the email and the password from the request body
@@ -101,6 +104,79 @@ exports.login = async function (req, res, next) {
       ...user._doc,
       accessToken,
     });
+  } catch (error) {
+    return res.status(500).json({
+      type: error.name,
+      message: error.message,
+    });
+  }
+};
+
+// verify tokens
+exports.verifyToken = async function (req, res, next) {
+  try {
+    // access the access token from the request header
+
+    let accessToken = req.headers.authorization;
+    if (!accessToken) {
+      return res.json(false);
+    }
+    accessToken = accessToken.replace("Bearer", "").trim();
+
+    // find the refresh token with the same acces token
+    let token = await TokenModel.findOne({ accessToken: accessToken });
+    if (!token) {
+      return res.json(false);
+    }
+
+    let tokenData = jwt.decode(token.refreshToken);
+    const user = await UserModel.findById(tokenData.id);
+    if (!user) {
+      return res.json(false);
+    }
+
+    const isValid = jwt.verify(
+      token.refreshToken,
+      process.env.REFRESH_TOKEN_SECRETSTRING
+    );
+    if (!isValid) {
+      return res.json(false);
+    }
+    return res.json(true);
+  } catch (error) {
+    return res.status(500).json({
+      type: error.name,
+      message: error.message,
+    });
+  }
+};
+
+// forgot password
+exports.forgotPassword = async function (req, res, next) {
+  try {
+    const { email } = req.body;
+    const user = await UserModel.findOne({ email });
+    if (!user) {
+      return res.status(404).json({
+        message: "A user with this email is not found",
+      });
+    }
+
+    // generate the otp
+
+    const otp = Math.floor(1000 + Math.random() * 9000);
+
+    user.resetPasswordOtp = otp;
+    user.resetPasswordOtpExpires = Date.now() + 10 * 60 * 1000;
+    await user.save();
+
+    const response = await emailSender.sendingEmail(
+      email,
+      "Email to reset your password",
+      `Your OTP to reset your password is : ${otp}`
+    );
+
+    return res.json({ message: response.message });
   } catch (error) {
     return res.status(500).json({
       type: error.name,
