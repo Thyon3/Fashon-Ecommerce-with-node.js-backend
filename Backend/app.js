@@ -3,7 +3,11 @@ const cors = require("cors");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const authRouter = require("./routers/auth.js");
+const errorHandler = require("./middlewares/errorHandler.js");
+
 require("dotenv/config");
+
+const jwtAuthentication = require("./middlewares/jwt.js");
 
 const app = express();
 app.use(express.json());
@@ -11,6 +15,8 @@ app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("tiny"));
+app.use(jwtAuthentication());
+app.use(errorHandler);
 
 const env = process.env;
 const port = env.PORT || 3000;
@@ -26,6 +32,10 @@ app.use(`/${api_url}`, authRouter);
 
 app.get("/", (req, res) => {
   res.send("✅ Server is working!");
+});
+
+app.get("/findUser", (req, res, next) => {
+  res.json([{ name: "asnkae" }]);
 });
 
 app.listen(port, hostName, () => {

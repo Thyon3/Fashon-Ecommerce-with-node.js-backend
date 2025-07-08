@@ -1,6 +1,6 @@
 const nodemailer = require("nodemailer");
 
-exports.sendingEmail = function async(email, subject, body) {
+exports.sendingEmail = async function (email, subject, body) {
   return new Promise((resolve, reject) => {
     const transporter = nodemailer.createTransport({
       service: "Gmail",
@@ -19,7 +19,7 @@ exports.sendingEmail = function async(email, subject, body) {
 
     return transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-        reject(Error("Error in sending email."));
+        return reject(Error("Error in sending email just happened sorry."));
       }
       resolve("Password reset email has been sent.");
     });

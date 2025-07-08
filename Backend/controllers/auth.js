@@ -176,9 +176,9 @@ exports.forgotPassword = async function (req, res, next) {
       `Your OTP to reset your password is : ${otp}`
     );
 
-    return res.json({ message: response.message });
+    return res.json({ message: response });
   } catch (error) {
-    return res.status(500).json({
+    return res.status(400).json({
       type: error.name,
       message: error.message,
     });
@@ -195,7 +195,9 @@ exports.verifyOtp = async function (req, res, next) {
         message: " A user with this email is not found",
       });
     }
-    if (user.resetPasswordOtp !== otp) {
+    console.log(otp);
+    console.log(`the user passsword is ${user.resetPasswordOtp} `);
+    if (String(user.resetPasswordOtp) !== String(otp)) {
       return res
         .status(400)
         .json({ message: "The Otp is incorrect please try again" });
@@ -223,8 +225,17 @@ exports.verifyOtp = async function (req, res, next) {
 
 // reset password
 exports.resetPassword = async function (req, res, next) {
+  // first check if the password is valid or not
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    const errorMessages = errors.array().map()((error) => ({
+      field: error.path,
+      message: error.message,
+    }));
+    return res.status(400).json({ error: errorMessages });
+  }
   try {
-    const { email, newPassword } = req.body;
+    const { email, password } = req.body;
     // check the user email if the user exists
 
     const user = await UserModel.findOne({ email });
@@ -238,13 +249,14 @@ exports.resetPassword = async function (req, res, next) {
         message: "First you have to verify Otp before reseting your password",
       });
     }
-    user.passwordHash = bcrypt.hashSync(newPassword, 8);
+    user.passwordHash = bcrypt.hashSync(password, 8);
     user.resetPasswordOtp = undefined;
     await user.save();
     return res
       .status(200)
       .json({ message: "Your password has been changed successfully" });
   } catch (error) {
+    console.error(error);
     // if there is an error return the error message
     return res.status(500).json({
       type: error.name,
