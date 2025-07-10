@@ -1,6 +1,7 @@
 // create a user schema and a collection for the user
 
 const mongoose = require("mongoose");
+const CartItem = require("../models/cart");
 
 const userSchema = mongoose.Schema({
   name: { type: String, required: true, trim: true },
@@ -17,6 +18,7 @@ const userSchema = mongoose.Schema({
   apartment: { type: String, default: "" },
   postalCode: { type: String, default: "" },
   country: { type: String, default: "" },
+  cart: [{ type: mongoose.Types.ObjectId, ref: "CartItem" }],
   phone: {
     type: String,
     required: true,

@@ -5,7 +5,7 @@ const bodyParser = require("body-parser");
 const authRouter = require("./routers/auth.js");
 const errorHandler = require("./middlewares/errorHandler.js");
 
-const UserRouter = require("./controllers/user.js");
+const UserRouter = require("./routers/user.js");
 
 require("dotenv/config");
 
