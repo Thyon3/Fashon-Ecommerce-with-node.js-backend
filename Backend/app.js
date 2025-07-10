@@ -19,6 +19,7 @@ app.use(cors());
 app.use(morgan("tiny"));
 app.use(jwtAuthentication());
 app.use(errorHandler);
+app.use("public/uploads", express.static(path.join(__dirname, "/public")));
 
 const env = process.env;
 const port = env.PORT || 3000;
