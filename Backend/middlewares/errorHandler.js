@@ -5,7 +5,7 @@ async function errorHandler(error, req, res, next) {
   try {
     if (error.name === "UnauthorizedEror") {
       if (!error.message.includes("jwt expired")) {
-        return res.status(error.status).json({
+        return res.status(500).json({
           type: error.name,
           message: error.message,
         });

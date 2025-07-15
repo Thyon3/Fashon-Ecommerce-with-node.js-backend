@@ -4,6 +4,8 @@ const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const authRouter = require("./routers/auth.js");
 const errorHandler = require("./middlewares/errorHandler.js");
+const AdminRouter = require("./routers/admin.js");
+const path = require("path");
 
 const UserRouter = require("./routers/user.js");
 
@@ -33,6 +35,7 @@ const db = require("./config/db.js");
 
 app.use(`/${api_url}`, authRouter);
 app.use("/users", UserRouter);
+app.use(`/${api_url}/admin`, AdminRouter);
 
 app.get("/", (req, res) => {
   res.send("✅ Server is working!");

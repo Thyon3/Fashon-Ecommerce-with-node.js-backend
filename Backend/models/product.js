@@ -21,23 +21,27 @@ const mongooseSchema = mongoose.Schema({
 });
 
 // presave hooks
+mongooseSchema.pre("save", async function (next) {
+  try {
+    if (this.reviews && this.reviews.length > 0) {
+      await this.populate("reviews");
 
-mongooseSchema.pre(("save", async function (this) {
-  if(this.reviews.length > 0 ){
-     await this. populate('reviews');
+      const totalReview = this.reviews.reduce(
+        (acc, review) => acc + review.rating,
+        0
+      );
+      const reviewCount = this.reviews.length;
+
+      this.rating = parseFloat((totalReview / reviewCount).toFixed(1));
+      this.numberOfReviews = reviewCount;
+    }
+    next();
+  } catch (error) {
+    next(error); // forward error to Mongoose
   }
-  // calculate the total ratings 
-  
-  let totalReview= this.reviews.reduce((acc,review)=>{
-    acc+review.rating;
-},0);
-const reviewCount = this.reviews.length; 
-this.rating = totalReview/reviewCount; 
-this.rating = parseFloat ((totalReview/reviewCount).toFixed(1));
-this.numberOfReviews= reviewCount; 
-next(); 
-}));
+});
 
-mongooseSchema.index({name:'text',description:'text'});
+mongooseSchema.index({ name: "text", description: "text" });
 
 const Product = mongoose.model("Product", mongooseSchema);
+module.exports = Product;

@@ -3,9 +3,11 @@ const router = express.Router();
 
 const UserController = require("../controllers/admin/user");
 const CategoryController = require("../controllers/admin/category");
+const OrderController = require("../controllers/admin/order");
+const ProductController = require("../controllers/admin/product");
 
 //User
-router.get("/user", UserControllerController.countUsers);
+router.get("/user", UserController.countUsers);
 router.delete("/user:id", UserController.deleteUser);
 
 //categories
@@ -16,12 +18,14 @@ router.delete("/category/:id", CategoryController.deleteCategory);
 //Products
 // get put delete add
 
-router.get("/products", AdminController.getProducts);
-router.post("/products", AdminController.addProduct);
-router.put("products/:id", AdminController.editProduct);
-router.delete("products/:id/image", AdminController.deleteProductImage);
-router.delete("produts/:id", AdminController.deleteProduct);
+router.get("/products", ProductController.getProducts);
+router.post("/products", ProductController.addProduct);
+router.put("products/:id", ProductController.editProduct);
+router.delete("products/:id/image", ProductController.deleteProductImage);
+router.delete("produts/:id", ProductController.deleteProduct);
 //Orders
-router.get("/order", AdminController.getOrders);
-router.put("/order/", AdminController.countOrder);
-router.delete("/order/:id", AdminController.changeOrderStatus);
+router.get("/order", OrderController.getOrders);
+router.put("/order/", OrderController.countOrder);
+router.delete("/order/:id", OrderController.changeOrderStatus);
+
+module.exports = router;

@@ -1,4 +1,6 @@
 const multer = require("multer");
+const path = require("path");
+const { unlink } = require("fs/promises");
 
 const ALLOWED_EXTNSIONS = {
   "image/png": "png",
@@ -41,3 +43,29 @@ exports.fileUpload = multer({
   limits: { fileSize: 1024 * 1024 * 5 },
   fileFilter: fileFilter,
 });
+
+// another helper for deleting images
+exports.deleteImages = async function (imageUrls, continueOnErrorName) {
+  await Promise.all(
+    imageUrls.map(async function (image) {
+      const imagePath = path.resolve(
+        __dirname,
+        "..",
+        "public",
+        "uploads",
+        path.basename(image)
+      );
+      // now delete the image after resolving the path
+      try {
+        await unlink(imagePath);
+      } catch (error) {
+        if (error.code === continueOnErrorName) {
+          console.log(`continuing to delete the next image ${error.message}`);
+        } else {
+          console.log(error.message);
+          throw error;
+        }
+      }
+    })
+  );
+};
