@@ -8,6 +8,7 @@ const AdminRouter = require("./routers/admin.js");
 const path = require("path");
 const UserRouter = require("./routers/user.js");
 const categoryRouter = require("./routers/category.js");
+const productContoller = require("./routers/product.js");
 require("dotenv/config");
 const jwtAuthentication = require("./middlewares/jwt.js");
 
@@ -37,6 +38,7 @@ app.use(`/${api_url}`, authRouter);
 app.use("/users", UserRouter);
 app.use(`/${api_url}/admin`, AdminRouter);
 app.use(`/${api_url}/category`, categoryRouter);
+app.use(`/${api_url}/product`, productContoller);
 
 app.listen(port, hostName, () => {
   console.log(`🚀 Server is running at http://${hostName}:${port}`);
