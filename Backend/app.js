@@ -28,6 +28,9 @@ const port = env.PORT || 3000;
 const hostName = env.HOST || "localhost";
 const api_url = env.API_uRL;
 
+//registering the cron job function
+require("./heplers/cron_jobs.js");
+
 // connect to mongoose
 const db = require("./config/db.js");
 
