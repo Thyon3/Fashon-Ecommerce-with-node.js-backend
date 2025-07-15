@@ -6,11 +6,9 @@ const authRouter = require("./routers/auth.js");
 const errorHandler = require("./middlewares/errorHandler.js");
 const AdminRouter = require("./routers/admin.js");
 const path = require("path");
-
 const UserRouter = require("./routers/user.js");
-
+const categoryRouter = require("./routers/category.js");
 require("dotenv/config");
-
 const jwtAuthentication = require("./middlewares/jwt.js");
 
 const app = express();
@@ -35,18 +33,10 @@ require("./heplers/cron_jobs.js");
 const db = require("./config/db.js");
 
 // all router middlewares
-
 app.use(`/${api_url}`, authRouter);
 app.use("/users", UserRouter);
 app.use(`/${api_url}/admin`, AdminRouter);
-
-app.get("/", (req, res) => {
-  res.send("✅ Server is working!");
-});
-
-app.get("/findUser", (req, res, next) => {
-  res.json([{ name: "asnkae" }]);
-});
+app.use(`/${api_url}/category`, categoryRouter);
 
 app.listen(port, hostName, () => {
   console.log(`🚀 Server is running at http://${hostName}:${port}`);

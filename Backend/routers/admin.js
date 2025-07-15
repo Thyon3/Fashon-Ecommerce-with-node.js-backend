@@ -16,13 +16,12 @@ router.put("/category/:id", CategoryController.editCategory);
 router.delete("/category/:id", CategoryController.deleteCategory);
 
 //Products
-// get put delete add
-
 router.get("/products", ProductController.getProducts);
 router.post("/products", ProductController.addProduct);
 router.put("products/:id", ProductController.editProduct);
 router.delete("products/:id/image", ProductController.deleteProductImage);
 router.delete("produts/:id", ProductController.deleteProduct);
+
 //Orders
 router.get("/order", OrderController.getOrders);
 router.put("/order/", OrderController.countOrder);
