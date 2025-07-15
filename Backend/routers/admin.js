@@ -7,8 +7,11 @@ const OrderController = require("../controllers/admin/order");
 const ProductController = require("../controllers/admin/product");
 
 //User
-router.get("/user", UserController.countUsers);
-router.delete("/user:id", UserController.deleteUser);
+router.get("/user/count", UserController.countUsers);
+router.delete("/user/:id", UserController.deleteUser);
+router.get("/user", UserController.getAllUsers);
+router.get("/user/:id", UserController.getUsersByID);
+router.put("/user/:id", UserController.updateUsersById);
 
 //categories
 router.post("/category", CategoryController.addCategory);

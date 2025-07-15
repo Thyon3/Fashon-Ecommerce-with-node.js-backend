@@ -1,5 +1,4 @@
 const UserModel = require("../models/user");
-
 exports.getAllUsers = async function (_, res, next) {
   try {
     const user = await UserModel.find().select("name email isAdmin phone");
