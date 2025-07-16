@@ -20,9 +20,9 @@ router.delete(
 
 // cart
 router.get("/:id/cart", cartController.getUserCart);
+router.post("/:id/cart", cartController.addToCart);
+router.put("/:id/cart/:cartItemId", cartController.modifyQuantity);
+router.delete("/:id/cart/:cartItemId", cartController.removeFromCart);
 router.get("/:id/cart/count", cartController.getUserCartCount);
 router.get("/:id/cart/:productId", cartController.getProductById);
-router.post("/:id/cart", cartController.addToCart);
-router.put("/:id/cart/:productId", cartController.modifyQuantity);
-router.delete("/:id/cart/:productId", cartController.removeFromCart);
 module.exports = router;

@@ -4,7 +4,7 @@ const UserModel = require("../../models/user");
 const Orders = require("../../models/order");
 const OrderItem = require("../../models/order_item");
 const Order = require("../../models/order");
-const CartItems = require("../../models/cart");
+const CartItems = require("../../models/cart_item");
 const Token = require("../../models/token");
 
 exports.countUsers = async function (_, res) {

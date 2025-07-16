@@ -1,7 +1,7 @@
 // create a user schema and a collection for the user
 
 const mongoose = require("mongoose");
-const CartItem = require("../models/cart");
+const CartItem = require("./cart_item");
 
 const userSchema = mongoose.Schema({
   name: { type: String, required: true, trim: true },
