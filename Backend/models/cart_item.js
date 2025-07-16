@@ -16,7 +16,7 @@ const CartSchema = mongoose.Schema({
     type: Date,
     default: () => new Date(Date.now() + 30 * 60 * 1000),
   },
-  isResesrved: { type: Boolean, default: false },
+  reserved: { type: Boolean, default: false },
 });
 
 const CartItem = mongoose.model("CartItem", CartSchema);
