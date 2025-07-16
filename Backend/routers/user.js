@@ -24,5 +24,4 @@ router.post("/:id/cart", cartController.addToCart);
 router.put("/:id/cart/:cartItemId", cartController.modifyQuantity);
 router.delete("/:id/cart/:cartItemId", cartController.removeFromCart);
 router.get("/:id/cart/count", cartController.getUserCartCount);
-router.get("/:id/cart/:productId", cartController.getProductById);
 module.exports = router;

@@ -292,3 +292,21 @@ exports.removeFromCart = async function (req, res) {
     await session.endSession();
   }
 };
+exports.getUserCartCount = async function (req, res) {
+  try {
+    const user = await userModel.findById(req.params.id);
+    if (!user) {
+      return res.status(404).json({
+        message: " the user does not exist",
+      });
+    }
+    const cartCount = user.cart.length; 
+    return res.status(204).json(cartCount); 
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      message: error.message,
+      type: error.name,
+    });
+  }
+};
