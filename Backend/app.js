@@ -9,6 +9,8 @@ const path = require("path");
 const UserRouter = require("./routers/user.js");
 const categoryRouter = require("./routers/category.js");
 const productContoller = require("./routers/product.js");
+const authorizeUserPostRequest = require('./middlewares/authorization.js')
+
 require("dotenv/config");
 const jwtAuthentication = require("./middlewares/jwt.js");
 
@@ -19,6 +21,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan("tiny"));
 app.use(jwtAuthentication());
+app.use(authorizeUserPostRequest); 
 app.use(errorHandler);
 app.use("public/uploads", express.static(path.join(__dirname, "/public")));
 
@@ -32,6 +35,7 @@ require("./heplers/cron_jobs.js");
 
 // connect to mongoose
 const db = require("./config/db.js");
+const authorizeUserPostRequest = require("./middlewares/authorization.js");
 
 // all router middlewares
 app.use(`/${api_url}`, authRouter);
