@@ -87,8 +87,8 @@ class CacheHelper {
     Cache.instance.resetSession();
   }
 
-  Future<bool> knowWhetherIsItYourFirstTimeOrNot() async {
-    final value = await _prefs.getBool(_firstTimeKey);
+  bool knowWhetherIsItYourFirstTimeOrNot() {
+    final value = _prefs.getBool(_firstTimeKey);
     return value ?? true;
   }
 }

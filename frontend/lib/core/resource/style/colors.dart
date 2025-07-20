@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class colors {
+abstract class AppColors {
   // lightThemePrimaryTint color swatch
   static const Color lightThemePrimaryTint = Color(0xff9e9cdc);
 
