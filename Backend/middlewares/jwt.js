@@ -2,7 +2,7 @@ const { expressjwt: jwtMiddleware } = require("express-jwt");
 const TokenModel = require("../models/token");
 
 function jwtAuthentication() {
-  apiUrl = process.env.API_URL;
+  const apiUrl = process.env.API_URL;
   return jwtMiddleware({
     secret: process.env.ACCESS_TOKEN_SECRETSTRING,
     algorithms: ["HS256"],
@@ -25,6 +25,7 @@ function jwtAuthentication() {
       `/${apiUrl}/register`,
       `/${apiUrl}/register/`,
       `/${apiUrl}/verifyToken`,
+      `/${apiUrl}/verifyToken/`,
     ],
   });
 }
