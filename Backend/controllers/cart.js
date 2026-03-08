@@ -3,12 +3,12 @@ const cartItem = require("../models/cart_item");
 const productModel = require("../models/product");
 const mongoose = require("mongoose");
 const CartItem = require("../models/cart_item");
-exposts.getUserCart = async function (req, res) {
+exports.getUserCart = async function (req, res) {
   try {
     const user = await userModel.findById(req.params.id);
     if (!user) {
       return res.status(404).json({
-        message: "user don't found",
+        message: "user not found",
       });
     }
     // user.cart -- ther is the id of the cart items
@@ -24,28 +24,28 @@ exposts.getUserCart = async function (req, res) {
     }
     let cart = [];
     // loop through each cart item and find the product
-    for (cartItem of cartItems) {
-      const product = await productModel.findById(cartItem.product);
+    for (const item of cartItems) {
+      const product = await productModel.findById(item.product);
       if (!product) {
         cart.push({
-          ...cartItem._doc,
+          ...item._doc,
           productExists: false,
           productOutOfStock: false,
         });
       } else {
-        cartItem.productName = product.name;
-        cartItem.productImage = product.image;
-        cartItem.productPrice = product.price;
+        item.productName = product.name;
+        item.productImage = product.image;
+        item.productPrice = product.price;
         // product? instock? or not?
-        if (product.numberInStock < cartItem.quantity) {
+        if (product.numberInStock < item.quantity) {
           cart.push({
-            ...cartItem._doc,
+            ...item._doc,
             productExists: true,
             productOutOfStock: true,
           });
         }
         cart.push({
-          ...cartItem._doc,
+          ...item._doc,
           productExists: true,
           productOutOfStock: false,
         });
@@ -300,8 +300,8 @@ exports.getUserCartCount = async function (req, res) {
         message: " the user does not exist",
       });
     }
-    const cartCount = user.cart.length; 
-    return res.status(204).json(cartCount); 
+    const cartCount = user.cart.length;
+    return res.status(204).json(cartCount);
   } catch (error) {
     console.error(error);
     return res.status(500).json({
