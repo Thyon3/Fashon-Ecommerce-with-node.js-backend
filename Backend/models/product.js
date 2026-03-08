@@ -1,27 +1,31 @@
 const mongoose = require("mongoose");
 
-const mongooseSchema = mongoose.Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  image: { type: String, required: true },
+const productSchema = mongoose.Schema({
+  name: { type: String, required: true, trim: true, maxlength: 100 },
+  description: { type: String, required: true, trim: true, maxlength: 1000 },
+  image: { type: String, required: true, trim: true },
   images: [{ type: String }],
-  price: { type: Number, required: true },
+  price: { type: Number, required: true, min: 0 },
   rating: { type: Number, default: 0.0 },
   Colors: [{ type: String }],
   sizes: [{ type: String }],
   category: { type: mongoose.Types.ObjectId, ref: "Category" },
   reviews: [{ type: mongoose.Types.ObjectId, ref: "Review" }],
-  numberOfReviews: { type: Number, defalut: 0.0 },
+  numberOfReviews: { type: Number, default: 0 },
   genderAgeCategory: {
     type: String,
     enum: ["men", "women", "kids", "unisex"],
   },
-  numberInStock: { type: Number, required: true, min: 0, max: 255 },
-  createdDate: { type: Date, default: Date.now() },
+  numberInStock: { type: Number, required: true, min: 0 },
+  isFeatured: { type: Boolean, default: false },
+  isAvailable: { type: Boolean, default: true },
+  discountPercentage: { type: Number, min: 0, max: 100, default: 0 },
+  createdDate: { type: Date, default: Date.now },
+  updatedDate: { type: Date, default: Date.now },
 });
 
 // presave hooks
-mongooseSchema.pre("save", async function (next) {
+productSchema.pre("save", async function (next) {
   try {
     if (this.reviews && this.reviews.length > 0) {
       await this.populate("reviews");
@@ -41,7 +45,7 @@ mongooseSchema.pre("save", async function (next) {
   }
 });
 
-mongooseSchema.index({ name: "text", description: "text" });
+productSchema.index({ name: "text", description: "text" });
 
-const Product = mongoose.model("Product", mongooseSchema);
+const Product = mongoose.model("Product", productSchema);
 module.exports = Product;
