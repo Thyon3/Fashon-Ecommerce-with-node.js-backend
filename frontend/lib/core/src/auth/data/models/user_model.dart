@@ -13,9 +13,116 @@ class UserModel extends User {
     required super.email,
     super.phone,
     super.address,
+    super.street,
+    super.apartment,
+    super.city,
+    super.postalCode,
+    super.country,
+    super.isActive,
+    super.lastLogin,
+    super.createdAt,
+    super.updatedAt,
   });
 
-  // Fields are inherited from User, do not redeclare them here.
+  // Factory constructor for JSON serialization
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['_id'] as String? ?? json['id'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      isAdmin: json['isAdmin'] as bool? ?? false,
+      wishlist: (json['wishlist'] as List<dynamic>?)
+          ?.map((item) => WishlistModel.fromJson(item as Map<String, dynamic>))
+          .toList() ?? [],
+      email: json['email'] as String? ?? '',
+      phone: json['phone'] as String?,
+      address: json['address'] != null 
+          ? AddressModel.fromJson(json['address'] as Map<String, dynamic>)
+          : null,
+      street: json['street'] as String?,
+      apartment: json['apartment'] as String?,
+      city: json['city'] as String?,
+      postalCode: json['postalCode'] as String?,
+      country: json['country'] as String?,
+      isActive: json['isActive'] as bool? ?? true,
+      lastLogin: json['lastLogin'] != null 
+          ? DateTime.parse(json['lastLogin'] as String)
+          : null,
+      createdAt: json['createdAt'] != null 
+          ? DateTime.parse(json['createdAt'] as String)
+          : null,
+      updatedAt: json['updatedAt'] != null 
+          ? DateTime.parse(json['updatedAt'] as String)
+          : null,
+    );
+  }
+
+  // Method to convert to JSON
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': name,
+      'isAdmin': isAdmin,
+      'wishlist': wishlist.map((item) {
+        if (item is WishlistModel) {
+          return item.toJson();
+        }
+        return item;
+      }).toList(),
+      'email': email,
+      'phone': phone,
+      'address': address != null && address is AddressModel 
+          ? (address as AddressModel).toJson() 
+          : address,
+      'street': street,
+      'apartment': apartment,
+      'city': city,
+      'postalCode': postalCode,
+      'country': country,
+      'isActive': isActive,
+      'lastLogin': lastLogin?.toIso8601String(),
+      'createdAt': createdAt?.toIso8601String(),
+      'updatedAt': updatedAt?.toIso8601String(),
+    };
+  }
+
+  // Copy with method for immutability
+  UserModel copyWith({
+    String? id,
+    String? name,
+    bool? isAdmin,
+    List<WishlistModel>? wishlist,
+    String? email,
+    String? phone,
+    Address? address,
+    String? street,
+    String? apartment,
+    String? city,
+    String? postalCode,
+    String? country,
+    bool? isActive,
+    DateTime? lastLogin,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+  }) {
+    return UserModel(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      isAdmin: isAdmin ?? this.isAdmin,
+      wishlist: wishlist ?? this.wishlist,
+      email: email ?? this.email,
+      phone: phone ?? this.phone,
+      address: address ?? this.address,
+      street: street ?? this.street,
+      apartment: apartment ?? this.apartment,
+      city: city ?? this.city,
+      postalCode: postalCode ?? this.postalCode,
+      country: country ?? this.country,
+      isActive: isActive ?? this.isActive,
+      lastLogin: lastLogin ?? this.lastLogin,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+    );
+  }
 
   UserModel.empty()
     : super(
