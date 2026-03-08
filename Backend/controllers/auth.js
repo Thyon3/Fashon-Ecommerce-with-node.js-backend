@@ -5,6 +5,7 @@ const UserModel = require("../models/user");
 const TokenModel = require("../models/token");
 const { validationResult } = require("express-validator");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
 
 // registering users
 exports.register = async function (req, res, next) {
@@ -44,7 +45,7 @@ exports.register = async function (req, res, next) {
     }
     return res.status(500).json({
       type: error.name,
-      messge: error.msg,
+      messge: error.message,
     });
   }
 };
