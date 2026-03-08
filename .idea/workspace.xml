@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7b1196a3-05a8-4957-9993-ed2f973c89e2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Backend/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/admin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/admin/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/admin/category.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/admin/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/admin/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/admin/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/admin/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/cart.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/cart.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/controllers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/controllers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/heplers/cron_jobs.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/heplers/cron_jobs.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/middlewares/authorization.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/middlewares/authorization.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/middlewares/errorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/middlewares/errorHandler.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/models/category.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/models/category.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/models/order.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/models/order.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/models/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/models/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/models/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/models/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/routers/admin.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routers/admin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/routers/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routers/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend/routers/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/Backend/routers/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/common/entities/address.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/common/entities/user.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/common/syles/text.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/common/syles/text.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/errors/exception.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/errors/exception.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/errors/failure.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/errors/failure.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/extensions/string_extension.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/extensions/string_extension.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/services/injection_container.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/services/injection_container.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/services/injection_container.main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/services/injection_container.main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/services/router.main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/services/router.main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/data/models/address_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/data/models/address_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/data/models/user_model.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/data/models/user_model.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/data/repositories/authentication_repostitory_implementation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/data/repositories/authentication_repostitory_implementation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/repository/auth_repo.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/repository/auth_repo.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/forgot_password.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/forgot_password.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/login.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/login.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/register.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/register.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/verify_otp.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/verify_otp.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/verify_password.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/verify_token.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/domain/usecases/verify_token.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/presentation/view/login_view.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/presentation/view/login_view.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/auth/presentation/view/splash_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/auth/presentation/view/splash_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/src/wishlist/domain/entities/wishlist.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/src/wishlist/domain/entities/wishlist.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/usecase/usecase.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/usecase/usecase.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/util/constants/core.utill.dart" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/lib/core/util/constants/core.utill.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/util/core.utill.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/lib/core/util/typedefs.dart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pubspec.lock" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pubspec.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/pubspec.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="305kg8AdAQhLotqisPExT9afbgQ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Fashon&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;
+  }
+}</component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7b1196a3-05a8-4957-9993-ed2f973c89e2" name="Changes" comment="" />
+      <created>1752924932000</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1752924932000</updated>
+    </task>
+    <servers />
+  </component>
+</project>
