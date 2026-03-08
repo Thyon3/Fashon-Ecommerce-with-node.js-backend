@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const { default: mongoose } = require("mongoose");
-const { useImperativeHandle } = require("react");
 const token = require("../models/token");
 async function authorizeUserPostRequest(req, res, next) {
   // authorizing user post requests to make sure the user itself only can make the request
@@ -11,12 +10,12 @@ async function authorizeUserPostRequest(req, res, next) {
   // exclude some auth routes
   const endPoints = [
     // public routes that don't require authentication
-    `/${apiUrl}/login`,
-    `/${apiUrl}/forgotPassword`,
-    `/${apiUrl}/resetPassword`,
-    `/${apiUrl}/verifyOtp`,
-    `/${apiUrl}/register`,
-    `/${apiUrl}/verifyToken`,
+    `/${API}/login`,
+    `/${API}/forgotPassword`,
+    `/${API}/resetPassword`,
+    `/${API}/verifyOtp`,
+    `/${API}/register`,
+    `/${API}/verifyToken`,
   ];
   const isOneOfTheEndPoints = endPoints.some((endpoint) =>
     req.originalUrl.includes(endpoint)
@@ -39,7 +38,7 @@ async function authorizeUserPostRequest(req, res, next) {
     const parts = req.originalUrl.split("/");
     const userIndex = parts.indexOf("users");
 
-    const id = parts(userIndex + 1);
+    const id = parts[userIndex + 1];
     if (!mongoose.isValidObjectId(id)) return next();
     if (tokenData.id !== id)
       return res.status(401).json({
