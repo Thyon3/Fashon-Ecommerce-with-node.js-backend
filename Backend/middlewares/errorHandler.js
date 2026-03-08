@@ -1,9 +1,10 @@
 const jwt = require("jsonwebtoken");
 const UserModel = require("../models/user");
+const TokenModel = require("../models/token");
 
 async function errorHandler(error, req, res, next) {
   try {
-    if (error.name === "UnauthorizedEror") {
+    if (error.name === "UnauthorizedError") {
       if (!error.message.includes("jwt expired")) {
         return res.status(500).json({
           type: error.name,
@@ -20,7 +21,7 @@ async function errorHandler(error, req, res, next) {
 
       if (!token) {
         return res.status(401).json({
-          type: "unatuthorized",
+          type: "unauthorized",
           message: " You are not authorized to access this resource",
         });
       }
@@ -34,7 +35,7 @@ async function errorHandler(error, req, res, next) {
       const user = await UserModel.findById(tokenData.id);
       if (!user) {
         return res.status(401).json({
-          type: "unatuthorized",
+          type: "unauthorized",
           message: " You are not authorized to access this resource",
         });
       }
@@ -47,19 +48,19 @@ async function errorHandler(error, req, res, next) {
         process.env.ACCESS_TOKEN_SECRETSTRING,
         { expiresIn: "24h" }
       );
-      req.header("Authorization") = `Bearer${newAccessToken}`; 
+      req.headers.authorization = `Bearer ${newAccessToken}`;
       // save the token 
-      await TokenModel.updateOne({_id: token.id},{accessToken: newAccessToken}).exec();
-      res.set('Authorization',`Bearer${newAccessToken}`);
-      return next(); 
+      await TokenModel.updateOne({ _id: token._id }, { accessToken: newAccessToken }).exec();
+      res.set('Authorization', `Bearer ${newAccessToken}`);
+      return next();
     }
   } catch (error) {
     return res.status(500).json({ type: error.name, message: error.message });
   }
   return res.status(error.status).json({
-          type: error.name,
-          message: error.message,
-        });
+    type: error.name,
+    message: error.message,
+  });
 }
 
 module.exports = errorHandler; 
