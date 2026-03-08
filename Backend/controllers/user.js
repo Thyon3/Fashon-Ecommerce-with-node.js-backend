@@ -7,7 +7,7 @@ exports.getAllUsers = async function (_, res, next) {
     }
     return res.json(user);
   } catch (error) {
-    res.send(500).json({
+    return res.status(500).json({
       type: error.name,
       message: error.message,
     });
@@ -17,7 +17,7 @@ exports.getAllUsers = async function (_, res, next) {
 exports.getUsersByID = async function (req, res, next) {
   try {
     const id = req.params.id;
-    const user = UserModel.getUsersByID(id).select(
+    const user = await UserModel.findById(id).select(
       "-passwordHash -resetPasswordOtpExpires -resetPasswordOtp"
     );
     if (!user) {
@@ -38,15 +38,15 @@ exports.updateUsersById = async function (req, res, next) {
     const id = req.params.id;
 
     // update the users' variables now
-    const user = await UserModel.FindByIdAndUpdate(
+    const user = await UserModel.findByIdAndUpdate(
       id,
       { name: name, email: email, phone: phone },
       { new: true }
     );
-    // make the passwod undefined before sending hte data to the user
+    // make the password undefined before sending the data to the user
     user.passwordHash = undefined;
     if (!user) {
-      return res.status(404).json({ message: "A user is not foudn " });
+      return res.status(404).json({ message: "A user is not found" });
     }
     return res.status(200).json(user);
   } catch (error) {
