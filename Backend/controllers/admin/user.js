@@ -9,7 +9,7 @@ const Token = require("../../models/token");
 
 exports.countUsers = async function (_, res) {
   try {
-    const count = await UserModel.countDocument();
+    const count = await UserModel.countDocuments();
     if (!count) {
       return res.status(401).json({
         message: "could not count users",
@@ -17,7 +17,7 @@ exports.countUsers = async function (_, res) {
     }
     return res.json(count);
   } catch (error) {
-    return res.stauts(500).json({
+    return res.status(500).json({
       type: error.name,
       message: error.message,
     });
