@@ -23,6 +23,18 @@ dependencies:
   # HTTP & Network
   dio: ^5.7.0
   connectivity_plus: ^6.1.0
+  
+  # Firebase & Notifications
+  firebase_messaging: ^14.9.4
+  flutter_local_notifications: ^17.2.3
+  
+  # Device & System Info
+  device_info_plus: ^10.1.2
+  package_info_plus: ^8.0.2
+  
+  # Additional Utilities
+  crypto: ^3.0.6
+  logger: ^2.4.0
 
   # Local Storage & Cache
   shared_preferences: ^2.3.3
