@@ -32,6 +32,16 @@ dependencies:
   device_info_plus: ^10.1.2
   package_info_plus: ^8.0.2
   
+  # Location & Camera
+  geolocator: ^10.1.1
+  permission_handler: ^11.3.1
+  image_picker: ^1.1.2
+  flutter_image_compress: ^2.3.0
+  
+  # Security & Storage
+  flutter_secure_storage: ^9.2.2
+  local_auth: ^2.3.0
+  
   # Additional Utilities
   crypto: ^3.0.6
   logger: ^2.4.0
